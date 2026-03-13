@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Eaton's Good Eatin' Burger Haven - Home</title>
+        <meta name="author" content="Malik Christopher, Briana-Jo Eaton, Lejaun Blackwood, Jamie Rance, Renee Harriott">
+        <link rel="icon" href="images\burger_haven_logo.png" type="image/x-icon">
+        <meta name="description" content="Home">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="custom.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+        <style>
+      
+        #map {
+            height: 200px;
+            width: 100%;
+        }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar bg-body-tertiary navbar-expand-lg sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand">
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar"
+                        aria-controls="offcanvasNavbar"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <img
+                        src="images\burger_haven_logo.png"
+                        alt="Burger Haven"
+                        id="havenLogo"
+                        height="50px"
+                        width="50px"
+                        class="img-fluid rounded-circle d-inline-block alignt-text-top"
+                    >
+                    Eaton's Burger Haven
+                </a>
+                <div
+                    class="offcanvas offcanvas-start"
+                    tabindex="-1"
+                    id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel"
+                >
+                    <div class="offcanvas-header">
+                        <img
+                            class="offcanvas-title img-fluid rounded-circle d-flex align-content-center"
+                            id="offcanvasNavbarLabel"
+                            src="images\burger_haven_logo.png"
+                            alt="Burger Haven"
+                            id="havenLogo"
+                            height="160px"
+                            width="160px"
+                        >
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="offcanvas"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  active" aria-current="page" href="menu.html">Menu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="FAQ.html">FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="locations.html">Locations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="application.html">Apply</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="promotions.html">Promotions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about_us.html">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <button
+                        type="button"
+                        class="btn btn-outline-light text-bg-light"
+                        data-bs-toggle="modal"
+                        data-bs-target="#loginSignupModal"
+                    >
+                        <svg class="bi" width="2em" height="2em">
+                            <use xlink:href="#people-circle"/>
+                        </svg>
+                        Login
+                    </button>
+                </div>
+            </nav>
+            <header id="home" class="hero" id="headerhero">
+                <div class="container">
+                    <h1 class="display-4">Eaton's Burger Haven</h1>
+                    <h4 class="lead">Menu</h4>
+                </div>
+            </header>
+            <main class="container my-5">
+            </div>
+            <h1 class="text-center mb-4">Menu</h1>
+            <div class="row">
+                <div class="card-group">
+                    <div class="card">
+                        <img
+                            src="images\classic_cheeseburger.jpeg"
+                            class="card-img-top"
+                            alt="Classic Cheeseburger"
+                            width="200px"
+                            height="300px"
+                        >
+                        <div class="card-body">
+                            <h5 class="card-title">Classic Cheeseburger</h5>
+                            <p class="card-text">A perfectly grilled beef patty, melted American cheese, lettuce, tomato, pickles, and our special sauce.</p>
+                            <p class="card-text">
+                                <strong>$850.00</strong>
+                            </p>
+                        </div>
+                        <div class="order-quantity">
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Classic Cheeseburger', -1)">-</button>
+                            <span id="quantity-Classic Cheeseburger">0</span>
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Classic Cheeseburger', 1)">+</button>
+                            <button
+                                class="btn btn-primary add-to-cart"
+                                data-item="Classic Cheeseburger"
+                                data-price="850.00"
+                                onclick="addToCart('Classic Cheeseburger', 850.00)"
+                            >Place Order</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img
+                            src="images\spicy_jalapeno.jpg"
+                            class="card-img-top"
+                            alt="Spicy Jalapeño Burger"
+                            width="200px"
+                            height="300px"
+                        >
+                        <div class="card-body">
+                            <h5 class="card-title">Spicy Jalapeño Burger</h5>
+                            <p class="card-text">A spicy beef patty topped with jalapeños, pepper jack cheese, lettuce, and spicy mayo for an extra kick.</p>
+                            <p class="card-text">
+                                <strong>$1,050.00</strong>
+                            </p>
+                        </div>
+                        <div class="order-quantity">
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Spicy Jalapeño Burger', -1)">-</button>
+                            <span id="quantity-Spicy Jalapeño Burger">0</span>
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Spicy Jalapeño Burger', 1)">+</button>
+                            <button
+                                class="btn btn-primary add-to-cart"
+                                data-item="Spicy Jalapeño Burger"
+                                data-price="1050.00"
+                                onclick="addToCart('Spicy Jalapeño Burger', 1050.00)"
+                            >Place Order</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img
+                            src="images\mushroom_burger.jpeg"
+                            class="card-img-top"
+                            alt="Mushroom Swiss Burger"
+                            width="200px"
+                            height="300px"
+                        >
+                        <div class="card-body">
+                            <h5 class="card-title">Mushroom Swiss Burger</h5>
+                            <p class="card-text">A savory beef patty with sautéed mushrooms, Swiss cheese, caramelized onions, and mayo on a toasted bun.</p>
+                            <p class="card-text">
+                                <strong>$1,050.00</strong>
+                            </p>
+                        </div>
+                        <div class="order-quantity">
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Mushroom Swiss Burger', -1)">-</button>
+                            <span id="quantity-Mushroom Swiss Burger">0</span>
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Mushroom Swiss Burger', 1)">+</button>
+                            <button
+                                class="btn btn-primary add-to-cart"
+                                data-item="Mushroom Swiss Burger"
+                                data-price="1050.00"
+                                onclick="addToCart('Mushroom Swiss Burger', 1050.00)"
+                            >Place Order</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-group">
+                    <div class="card">
+                        <img
+                            src="images\veggie_burger.jpeg"
+                            class="card-img-top"
+                            alt="Veggie Burger"
+                            width="200px"
+                            height="300px"
+                        >
+                        <div class="card-body">
+                            <h5 class="card-title">Veggie Burger</h5>
+                            <p class="card-text">A delicious veggie patty made with fresh ingredients, lettuce, tomato, pickles, and our special sauce.</p>
+                            <p class="card-text">
+                                <strong>$1,000.00</strong>
+                            </p>
+                        </div>
+                        <div class="order-quantity">
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Veggie Burger', -1)">-</button>
+                            <span id="quantity-Veggie Burger">0</span>
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Veggie Burger', 1)">+</button>
+                            <button
+                                class="btn btn-primary add-to-cart"
+                                data-item="Veggie Burger"
+                                data-price="1000.00"
+                                onclick="addToCart('Veggie Burger', 1000.00)"
+                            >Place Order</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img
+                            src="images\Grilled-Chicken-Sandwich.jpg"
+                            class="card-img-top"
+                            alt="Fish Sandwich"
+                            width="200px"
+                            height="300px"
+                        >
+                        <div class="card-body">
+                            <h5 class="card-title">Grilled Chicken Sandwich</h5>
+                            <p class="card-text">Grilled chicken breast with lettuce, tomato, and mayo on a toasted bun.</p>
+                            <p class="card-text">
+                                <strong>$1,100.00</strong>
+                            </p>
+                        </div>
+                        <div class="order-quantity">
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Grilled-Chicken-Sandwich', -1)">-</button>
+                            <span id="quantity-Grilled-Chicken-Sandwich">0</span>
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Grilled-Chicken-Sandwich', 1)">+</button>
+                            <button
+                                class="btn btn-primary add-to-cart"
+                                data-item="Grilled-Chicken-Sandwich"
+                                data-price="1100.00"
+                                onclick="addToCart('Grilled-Chicken-Sandwich', 1100.00)"
+                            >Place Order</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img
+                            src="images\crispy_chicken.jpeg"
+                            class="card-img-top"
+                            alt="Crispy Chicken Sandwich"
+                            width="200px"
+                            height="300px"
+                        >
+                        <div class="card-body">
+                            <h5 class="card-title">Crispy Chicken Sandwich</h5>
+                            <p class="card-text">Crispy fried chicken, pickles, and creamy mayo, served on a soft bun.</p>
+                            <p class="card-text">
+                                <strong>$950.00</strong>
+                            </p>
+                        </div>
+                        <div class="order-quantity">
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Crispy Chicken Sandwich', -1)">-</button>
+                            <span id="quantity-Crispy Chicken Sandwich">0</span>
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Crispy Chicken Sandwich', 1)">+</button>
+                            <button
+                                class="btn btn-primary add-to-cart"
+                                data-item="Crispy Chicken Sandwich"
+                                data-price="950.00"
+                                onclick="addToCart('Crispy Chicken Sandwich', 950.00)"
+                            >Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mt-4">
+                <h3>Sides</h3>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Select a Side</h5>
+                        <div>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="sideType"
+                                    value="Fries"
+                                    onchange="setSideType('Fries')"
+                                >
+                                Fries
+                            </label>
+                            <br>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="sideType"
+                                    value="Onion Rings"
+                                    onchange="setSideType('Onion Rings')"
+                                >
+                                Onion Rings
+                            </label>
+                        </div>
+                        <div id="sizeSelection" class="mt-3 d-none">
+                            <h6>Select Size</h6>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="sideSize"
+                                    value="Small"
+                                    onchange="selectSize('Small', 40.00)"
+                                >
+                                Small - $40.00
+                            </label>
+                            <br>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="sideSize"
+                                    value="Medium"
+                                    onchange="selectSize('Medium', 60.00)"
+                                >
+                                Medium - $60.00
+                            </label>
+                            <br>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="sideSize"
+                                    value="Large"
+                                    onchange="selectSize('Large', 80.00)"
+                                >
+                                Large - $80.00
+                            </label>
+                        </div>
+                        <div class="order-quantity mt-3">
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Sides', -1)">-</button>
+                            <span id="quantity-Sides">0</span>
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Sides', 1)">+</button>
+                            <button class="btn btn-primary add-to-cart" onclick="addToCart('Sides')">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mt-4">
+                <h3>Beverages</h3>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Select a Beverage</h5>
+                        <div>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="beverageType"
+                                    value="Sprite"
+                                    onchange="setBeverageType('Sprite')"
+                                >
+                                Sprite
+                            </label>
+                            <br>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="beverageType"
+                                    value="Fruit Punch"
+                                    onchange="setBeverageType('Fruit Punchj')"
+                                >
+                                Fruit Punch
+                            </label>
+                            <br>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="beverageType"
+                                    value="Sorrel"
+                                    onchange="setBeverageType('Sorrel')"
+                                >
+                                Sorrel
+                            </label>
+                            <br>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="beverageType"
+                                    value="Ginger Beer"
+                                    onchange="setBeverageType('Ginger Beer')"
+                                >
+                                Ginger Bear
+                            </label>
+                            <br>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="beverageType"
+                                    value="Grape"
+                                    onchange="setBeverageType('Grape')"
+                                >
+                                Grape
+                            </label>
+                            <br>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="beverageType"
+                                    value="Cola Champaigne"
+                                    onchange="setBeverageType('Cola Champaigne')"
+                                >
+                                Cola Champaigne
+                            </label>
+                            <br>
+                        </div>
+                        <div id="beverageSizeSelection" class="mt-3 d-none">
+                            <h6>Select Size</h6>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="beverageSize"
+                                    value="Regular"
+                                    onchange="selectBeverageSize('Regular', 150.00)"
+                                >
+                                Regular - $150.00
+                            </label>
+                            <br>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="beverageSize"
+                                    value="Supersized"
+                                    onchange="selectBeverageSize('Supersized', 200.00)"
+                                >
+                                Supersized - $200.00
+                            </label>
+                        </div>
+                        <div class="order-quantity mt-3">
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Beverages', -1)">-</button>
+                            <span id="quantity-Beverages">0</span>
+                            <button class="btn btn-light btn-sm" onclick="updateQuantity('Beverages', 1)">+</button>
+                            <button class="btn btn-primary add-to-cart" onclick="addToCart('Beverages')">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Delivery Address</h5>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Enter your address</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="address"
+                                placeholder="Enter your address"
+                            >
+                        </div>
+                        <button id="getLocation" class="btn btn-secondary mb-3">Get My Location</button>
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-7 col-lg-8">
+    <h4 class="mb-3">Billing address</h4>
+    <form class="needs-validation" novalidate>
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder=""
+                    value=""
+                    required
+                >
+                <div class="invalid-feedback">
+                    Valid first name is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder=""
+                    value=""
+                    required
+                >
+                <div class="invalid-feedback">
+                    Valid last name is required.
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text">@</span>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="username"
+                        placeholder="Username"
+                        required
+                    >
+                    <div class="invalid-feedback">
+                        Your username is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="email" class="form-label">
+                    Email
+                    <span class="text-body-secondary">(Optional)</span>
+                </label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="you@example.com"
+                >
+                <div class="invalid-feedback">
+                    Please enter a valid email address for shipping updates.
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    placeholder="1234 Main St"
+                    required
+                >
+                <div class="invalid-feedback">
+                    Please enter your shipping address.
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="address2" class="form-label">
+                    Address 2
+                    <span class="text-body-secondary">(Optional)</span>
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="address2"
+                    placeholder="Apartment or suite"
+                >
+            </div>
+            <div class="col-md-5">
+                <label for="country" class="form-label">Country</label>
+                <select class="form-select" id="country" required>
+                    <option value="">Choose...</option>
+                    <option>Jamaica</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid country.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="Parish" class="form-label">Parish</label>
+                <select class="form-select" id="Parish" required>
+                    <option value="">Choose...</option>
+                    <option>Manchester</option>
+                    <option>Kingston</option>
+                    <option>Montego Bay</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please provide a valid state.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="zip" class="form-label">Zip</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="zip"
+                    placeholder=""
+                    required
+                >
+                <div class="invalid-feedback">
+                    Zip code required.
+                </div>
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="save-info">
+            <label class="form-check-label" for="save-info">Save this information for next time</label>
+        </div>
+        <hr class="my-4">
+        <h4 class="mb-3">Payment</h4>
+        <div class="my-3">
+            <div class="form-check">
+                <input
+                    id="credit"
+                    name="paymentMethod"
+                    type="radio"
+                    class="form-check-input"
+                    checked
+                    required
+                >
+                <label class="form-check-label" for="credit">Credit card</label>
+            </div>
+            <div class="form-check">
+                <input
+                    id="debit"
+                    name="paymentMethod"
+                    type="radio"
+                    class="form-check-input"
+                    required
+                >
+                <label class="form-check-label" for="debit">Debit card</label>
+            </div>
+            <div class="form-check">
+                <input
+                    id="paypal"
+                    name="paymentMethod"
+                    type="radio"
+                    class="form-check-input"
+                    required
+                >
+                <label class="form-check-label" for="paypal">PayPal</label>
+            </div>
+        </div>
+        <div class="row gy-3">
+            <div class="col-md-6">
+                <label for="cc-name" class="form-label">Name on card</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cc-name"
+                    placeholder=""
+                    required
+                >
+                <small class="text-body-secondary">Full name as displayed on card</small>
+                <div class="invalid-feedback">
+                    Name on card is required
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="cc-number" class="form-label">Credit card number</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cc-number"
+                    placeholder=""
+                    required
+                >
+                <div class="invalid-feedback">
+                    Credit card number is required
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="cc-expiration" class="form-label">Expiration</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cc-expiration"
+                    placeholder=""
+                    required
+                >
+                <div class="invalid-feedback">
+                    Expiration date required
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="cc-cvv" class="form-label">CVV</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cc-cvv"
+                    placeholder=""
+                    required
+                >
+                <div class="invalid-feedback">
+                    Security code required
+                </div>
+            </div>
+        </div>
+        <hr class="my-4">
+        <button
+            class="w-100 btn btn-primary btn-lg"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#cartOffcanvas"
+            aria-controls="cartOffcanvas"
+        >Place Order</button>
+    </form>
+</div>
+</div>
+</main>
+<button
+    class="btn btn-primary position-fixed bottom-0 end-0 m-3"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#cartOffcanvas"
+    aria-controls="cartOffcanvas"
+>
+    <i class="bi bi-cart"></i>
+    <span id="cartCount">0</span>
+    items - $
+    <span id="cartTotal">0.00</span>
+</button>
+<div
+    class="offcanvas offcanvas-end"
+    tabindex="-1"
+    id="cartOffcanvas"
+    aria-labelledby="cartOffcanvasLabel"
+>
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="cartOffcanvasLabel">Your Order</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+        ></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul id="cartItems" class="list-group"></ul>
+        <div class="d-flex justify-content-between mt-3">
+            <p>
+                Total: $
+                <span id="cartTotalPrice">0.00</span>
+            </p>
+            <button id="cancelOrderBtn" class="btn btn-danger">Cancel Order</button>
+        </div>
+        <button id="confirmOrderBtn" class="btn btn-success w-100">Confirm Order</button>
+    </div>
+</div>
+<footer>
+    <div class="footer">
+        <p>&copy; 2024 Eaton's Burger Haven. All Rights Reserved.</p>
+        <a href="https://facebook.com">
+            <img src="images\facebookicon.png" alt="">
+        </a>
+        <a href="https://instagram.com">
+            <img src="images\instagramicon.png" alt="">
+        </a>
+        <a href="https://twitter.com">
+            <img src="images\twitter.png" alt="">
+        </a>
+    </div>
+</footer>
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="people-circle" viewBox="0 0 16 16">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+    </symbol>
+</svg>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="menu.js"></script>
+</body>
+</html>
